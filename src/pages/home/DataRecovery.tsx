@@ -4,13 +4,7 @@ import { motion } from "framer-motion";
 
 const DataRecovery = () => {
       const {componentRef,style}=useScrollGrow()
-//   const componentRef = useRef<HTMLDivElement>(null);
-//   const { scrollYProgress } = useScroll({
-//     target: componentRef,
-//     offset: ["0 1", "1.2 1"],
-//   });
-// //   const scaleValues=useTransform(scrollYProgress,[0,1],[0.5,1])
-//   const opacityValues=useTransform(scrollYProgress,[0,1],[0.5,1])
+
   return (
     <motion.div
       style={style}

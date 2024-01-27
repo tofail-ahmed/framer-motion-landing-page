@@ -82,4 +82,7 @@
   html{
     font-family: 'Poppins', sans-serif;
   }
+  h1{
+    @apply text-4xl font-semibold
+  }
 }
