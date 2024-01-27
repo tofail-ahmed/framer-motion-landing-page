@@ -1,16 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import { getServices } from "@/api/admin/service/service.api";
+import { useQuery } from "@tanstack/react-query";
 
 const ServiceList = () => {
-  const [sevices,setServices]=useState([]);
-  useEffect(()=>{
-    fetch(`http://localhost:5000/api/v1/services`)
-    .then(res=>res.json())
-    .then(data=>setServices(data.data))
-  },[])
-  console.log(sevices)
-  return (
-    <div>ServiceList</div>
-  )
-}
+  
 
-export default ServiceList
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["services"],
+    queryFn: getServices,
+  });
+
+  console.log(data,isLoading,isError)
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Error loading services.</p>;
+  }
+  return (
+    <div>
+      {data?.data?.map((item) => (
+        <h1 key={item?.id}>{item?.name}</h1>
+      ))}
+    </div>
+  );
+};
+
+export default ServiceList;

@@ -4,6 +4,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 
 const AdminLayout = () => {
+  // const [sidebar,setSidebar]=useState(false)
   return (
     <div className='grid grid-cols-12'>
       <Sidebar></Sidebar>
