@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { FormEvent, useState } from "react";
 
 interface ServiceData {
@@ -10,10 +10,11 @@ interface ServiceData {
 }
 
 const AddService = () => {
+  const queryClient=useQueryClient();
   const [serviceData, setServiceData] = useState<ServiceData>({
     name: "",
     description: "",
-    devices: ["", "", ""], // Initialize with empty strings for three devices
+    devices: ["", "", ""], 
     price: 0,
   });
   const { mutateAsync, isError, isSuccess, error } = useMutation({
@@ -37,13 +38,15 @@ const AddService = () => {
         throw new Error(`Error during mutation: ${error.message}`);
       }
     },
+    onSuccess:()=>{
+      queryClient.invalidateQueries({queryKey:['services']})
+    }
   });
   console.log(isError,isSuccess)
   const handleSubmit = async(e: FormEvent) => {
     e.preventDefault();
 
-    // Remove empty strings from the devices array
-    // const filteredDevices = serviceData.devices.filter(device => device.trim() !== '');
+    
 
     const updatedServiceData: ServiceData = {
       ...serviceData,
