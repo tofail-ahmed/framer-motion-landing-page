@@ -8,18 +8,7 @@ import {  Trash2 } from "lucide-react";
 
 const ServiceList = () => {
   const { data, isLoading, isError }=useGetServices()
-  // const { data, isLoading, isError } = useQuery({
-  //   queryKey: ["services"],
-  //   queryFn: getServices,
-  //   select: (data) => {
-  //     return data.data.map((item) => ({
-  //       id: item._id,
-  //       name: item.name,
-  //       description: item.description,
-  //       price: item.price,
-  //     }));
-  //   },
-  // });
+  
 
   if (isLoading) {
     return <p>Loading...</p>;
